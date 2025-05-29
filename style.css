@@ -54,3 +54,22 @@ body, html {
   font-size: 1.2em;
   margin: 0.5em 0;
 }
+
+.background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('your-photo.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.dim-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* initial dimming */
+  transition: background-color 0.5s ease;
+  z-index: 1;
+}

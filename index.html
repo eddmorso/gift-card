@@ -1,89 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Gift</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Card</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('gift_card_pic.jpg') no-repeat center center fixed;
-      background-size: cover;
       overflow: hidden;
     }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.4);
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: black;
+    }
+    .start-screen {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      height: 100%;
+      width: 100%;
+      background-color: black;
       color: white;
-      padding: 20px;
-      text-align: center;
     }
-
-    .message {
+    .start-screen button {
       font-size: 1.5rem;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
-      backdrop-filter: blur(8px);
-    }
-
-    .start-screen {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 10px;
+      background: #ffffff22;
       color: white;
-      font-size: 1.8rem;
       cursor: pointer;
-      z-index: 2;
-      text-align: center;
-      padding: 20px;
     }
-
-    @media (min-width: 768px) {
-      .message {
-        font-size: 2rem;
-        max-width: 600px;
-      }
-      .start-screen {
-        font-size: 2rem;
-      }
-    }
-
-    audio {
+    #giftContent {
       display: none;
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
     }
   </style>
 </head>
 <body>
   <div class="start-screen" id="startScreen">
-    <button id="startButton">🎵 Тицьни щоб почати 🎁</button>
+    <button id="startButton">🎵 Tap to Start the Gift 🎁</button>
   </div>
 
-  <div class="overlay" id="giftContent" style="display: none;">
-    <div class="message">
-      <p>💝 Happy Pyozday!!!</p>
-      <p>Тут не забути додати текст</p>
-      <p>Насолоджуйся 🎶</p>
-    </div>
-  </div>
+  <div id="giftContent" style="background-image: url('gift_card_pic.jpg');"></div>
 
   <audio id="bgMusic" loop>
     <source src="gift_card_music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <script>
@@ -91,18 +61,17 @@
     const startScreen = document.getElementById('startScreen');
     const giftContent = document.getElementById('giftContent');
     const bgMusic = document.getElementById('bgMusic');
-  
-    function startExperience() {
+
+    startButton.addEventListener('click', () => {
       startScreen.style.display = 'none';
-      giftContent.style.display = 'flex';
-  
-      bgMusic.play().catch((err) => {
-        console.warn("Playback failed:", err);
+      giftContent.style.display = 'block';
+
+      bgMusic.play().then(() => {
+        console.log("Audio started successfully.");
+      }).catch((err) => {
+        console.error("Audio failed to play:", err);
       });
-    }
-  
-    startButton.addEventListener('click', startExperience);
-    startButton.addEventListener('touchstart', startExperience);
+    });
   </script>
 </body>
 </html>

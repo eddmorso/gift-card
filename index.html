@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <audio id="bgMusic" loop>
+  <audio id="bgMusic" loop preload="auto" playsinline>
     <source src="gift_card_music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -34,29 +34,22 @@
       const bgMusic = document.getElementById('bgMusic');
   
       function startExperience() {
-        // Hide the start screen right away
-        startScreen.style.display = 'none';
-  
-        // Lighten the background
-        dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-  
-        // Show message content
-        giftContent.style.display = 'flex';
-  
-        // Try playing audio — wrapped in the gesture context
-        const playPromise = bgMusic.play();
-  
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              console.log("Audio playback started");
-            })
-            .catch((error) => {
-              console.error("Playback failed:", error);
-              alert("Please tap again to start the music 🎶");
-            });
-        }
-      }
+  startScreen.style.display = 'none';
+  dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+  giftContent.style.display = 'flex';
+
+  const playPromise = bgMusic.play();
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        console.log("Audio playback started");
+      })
+      .catch((error) => {
+        console.error("Playback failed:", error);
+        alert("Sound failed to play. Make sure your phone is not muted 🔇 and tap again.");
+      });
+  }
+}
   
       // Listen for direct interaction only once
       startScreen.addEventListener('click', startExperience, { once: true });

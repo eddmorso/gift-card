@@ -13,7 +13,7 @@ body, html {
   background: rgba(0, 0, 0, 0.7); /* initial dimmed */
   background-size: cover;
   background-position: center;
-  background-image: url('your-photo.jpg'); /* your background photo */
+  background-image: url('gift_card_pic.jpg'); /* your background photo */
   z-index: 1;
 }
 

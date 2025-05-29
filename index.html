@@ -69,9 +69,8 @@
   </style>
 </head>
 <body>
-
   <div class="start-screen" id="startScreen">
-    🎵 Тицьни десь щоб почати 🎁
+    <button id="startButton">🎵 Тицьни десь щоб почати 🎁</button>
   </div>
 
   <div class="overlay" id="giftContent" style="display: none;">
@@ -88,6 +87,7 @@
   </audio>
 
   <script>
+    const startButton = document.getElementById('startButton');
     const startScreen = document.getElementById('startScreen');
     const giftContent = document.getElementById('giftContent');
     const bgMusic = document.getElementById('bgMusic');
@@ -96,15 +96,13 @@
       startScreen.style.display = 'none';
       giftContent.style.display = 'flex';
   
-      // Ensure audio.play() is directly called in a user gesture event
       bgMusic.play().catch((err) => {
         console.warn("Playback failed:", err);
       });
     }
   
-    // Use both click and touchstart for mobile compatibility
-    startScreen.addEventListener('click', startExperience);
-    startScreen.addEventListener('touchstart', startExperience);
+    startButton.addEventListener('click', startExperience);
+    startButton.addEventListener('touchstart', startExperience);
   </script>
 </body>
 </html>

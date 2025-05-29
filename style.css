@@ -1,9 +1,16 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-  }
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('your-photo.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* <-- Fixes mobile issues */
+  overflow: hidden;
+}
+
   body {
     display: flex;
     justify-content: center;

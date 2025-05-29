@@ -23,38 +23,35 @@
 
   <audio id="bgMusic" loop preload="auto" playsinline>
     <source src="gift_card_music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      const startScreen = document.getElementById('startScreen');
-      const giftContent = document.getElementById('giftContent');
-      const dimOverlay = document.getElementById('dimOverlay');
-      const bgMusic = document.getElementById('bgMusic');
-  
-      function startExperience() {
-  startScreen.style.display = 'none';
-  dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-  giftContent.style.display = 'flex';
+    const startScreen = document.getElementById('startScreen');
+    const giftContent = document.getElementById('giftContent');
+    const dimOverlay = document.getElementById('dimOverlay');
+    const bgMusic = document.getElementById('bgMusic');
+    const startButton = document.getElementById('startButton');
 
-  const playPromise = bgMusic.play();
-  if (playPromise !== undefined) {
-    playPromise
-      .then(() => {
-        console.log("Audio playback started");
-      })
-      .catch((error) => {
-        console.error("Playback failed:", error);
-        alert("Sound failed to play. Make sure your phone is not muted 🔇 and tap again.");
+    startButton.addEventListener('click', () => {
+      giftContent.style.display = 'block';
+
+      bgMusic.play().then(() => {
+        console.log("Audio started successfully.");
+      }).catch((err) => {
+        console.error("Audio failed to play:", err);
       });
-  }
-}
-  
-      // Listen for direct interaction only once
-      startScreen.addEventListener('click', startExperience, { once: true });
-      startScreen.addEventListener('touchstart', startExperience, { once: true });
+
+      startScreen.style.display = 'none';
+
+      // Lighten background
+      dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+
+      // Show message
+      giftContent.style.display = 'flex';
     });
+
+    startScreen.addEventListener('click', startExperience);
+    startScreen.addEventListener('touchstart', startExperience);
   </script>
 </body>
 </html>

@@ -7,37 +7,47 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="dim-overlay" id="dimOverlay"></div>
+
   <div class="start-screen" id="startScreen">
-    <button id="startButton">🎵 Тицьни десь щоб почати 🎁</button>
+    🎵 Tap anywhere to begin your surprise 🎁
   </div>
 
-  <div id="giftContent" style="background-image: url('gift_card_pic.jpg');">
-    <div class="card">
-      <h1>🎉 Happy Pyozday!</h1>
-      <p>Wishing you a day filled with love, joy, and unforgettable memories. 💖</p>
+  <div class="overlay" id="giftContent">
+    <div class="message">
+      <p>💝 Just for you</p>
+      <p>May this little gift brighten your day.</p>
+      <p>Enjoy the music 🎶</p>
     </div>
   </div>
 
   <audio id="bgMusic" loop>
-    <source src="gift_card_music.mp3" type="audio/mpeg">
+    <source src="your-audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 
   <script>
-    const startButton = document.getElementById('startButton');
     const startScreen = document.getElementById('startScreen');
     const giftContent = document.getElementById('giftContent');
+    const dimOverlay = document.getElementById('dimOverlay');
     const bgMusic = document.getElementById('bgMusic');
 
-    startButton.addEventListener('click', () => {
+    function startExperience() {
+      // Hide start screen
       startScreen.style.display = 'none';
-      giftContent.style.display = 'block';
 
-      bgMusic.play().then(() => {
-        console.log("Audio started successfully.");
-      }).catch((err) => {
-        console.error("Audio failed to play:", err);
-      });
-    });
+      // Lighten background
+      dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+
+      // Show message
+      giftContent.style.display = 'flex';
+
+      // Play audio
+      bgMusic.play();
+    }
+
+    startScreen.addEventListener('click', startExperience);
+    startScreen.addEventListener('touchstart', startExperience);
   </script>
 </body>
 </html>

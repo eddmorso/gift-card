@@ -27,27 +27,41 @@
   </audio>
 
   <script>
-    const startScreen = document.getElementById('startScreen');
-    const giftContent = document.getElementById('giftContent');
-    const dimOverlay = document.getElementById('dimOverlay');
-    const bgMusic = document.getElementById('bgMusic');
-
-    function startExperience() {
-      // Hide start screen
-      startScreen.style.display = 'none';
-
-      // Lighten background
-      dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-
-      // Show message
-      giftContent.style.display = 'flex';
-
-      // Play audio
-      bgMusic.play();
-    }
-
-    startScreen.addEventListener('click', startExperience);
-    startScreen.addEventListener('touchstart', startExperience);
+    window.addEventListener('DOMContentLoaded', function () {
+      const startScreen = document.getElementById('startScreen');
+      const giftContent = document.getElementById('giftContent');
+      const dimOverlay = document.getElementById('dimOverlay');
+      const bgMusic = document.getElementById('bgMusic');
+  
+      function startExperience() {
+        // Hide the start screen right away
+        startScreen.style.display = 'none';
+  
+        // Lighten the background
+        dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+  
+        // Show message content
+        giftContent.style.display = 'flex';
+  
+        // Try playing audio — wrapped in the gesture context
+        const playPromise = bgMusic.play();
+  
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log("Audio playback started");
+            })
+            .catch((error) => {
+              console.error("Playback failed:", error);
+              alert("Please tap again to start the music 🎶");
+            });
+        }
+      }
+  
+      // Listen for direct interaction only once
+      startScreen.addEventListener('click', startExperience, { once: true });
+      startScreen.addEventListener('touchstart', startExperience, { once: true });
+    });
   </script>
 </body>
 </html>

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gift Card</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <div class="dim-overlay" id="dimOverlay"></div>
 
   <div class="start-screen" id="startScreen">
-    🎵 Tap anywhere to begin your surprise 🎁
+    <button id="startButton">🎵 Tap to Start the Surprise 🎁</button>
   </div>
 
   <div class="overlay" id="giftContent">
@@ -23,31 +24,29 @@
 
   <audio id="bgMusic" loop preload="auto" playsinline>
     <source src="gift_card_music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 
   <script>
+    const startButton = document.getElementById('startButton');
     const startScreen = document.getElementById('startScreen');
     const giftContent = document.getElementById('giftContent');
     const dimOverlay = document.getElementById('dimOverlay');
     const bgMusic = document.getElementById('bgMusic');
-    const startButton = document.getElementById('startButton');
 
     startButton.addEventListener('click', () => {
-      giftContent.style.display = 'block';
-
       bgMusic.play().then(() => {
-        console.log("Audio started successfully.");
+        console.log("Audio started!");
       }).catch((err) => {
-        console.error("Audio failed to play:", err);
+        console.error("Audio failed:", err);
+        alert("🔇 Please check your volume or try again.");
       });
 
       startScreen.style.display = 'none';
+      giftContent.style.display = 'flex';
 
       // Lighten background
       dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-
-      // Show message
-      giftContent.style.display = 'flex';
     });
   </script>
 </body>

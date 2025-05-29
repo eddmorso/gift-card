@@ -91,13 +91,18 @@
     const startScreen = document.getElementById('startScreen');
     const giftContent = document.getElementById('giftContent');
     const bgMusic = document.getElementById('bgMusic');
-
+  
     function startExperience() {
       startScreen.style.display = 'none';
       giftContent.style.display = 'flex';
-      bgMusic.play();
+  
+      // Ensure audio.play() is directly called in a user gesture event
+      bgMusic.play().catch((err) => {
+        console.warn("Playback failed:", err);
+      });
     }
-
+  
+    // Use both click and touchstart for mobile compatibility
     startScreen.addEventListener('click', startExperience);
     startScreen.addEventListener('touchstart', startExperience);
   </script>

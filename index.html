@@ -142,8 +142,9 @@
 
     .rainbow-text {
       position: relative;
-      width: 100vw;
-      height: 60vh;
+      width: 70vw;
+      max-width: 800px;
+      height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -151,7 +152,7 @@
 
     .rainbow-text span {
       position: absolute;
-      font-size: clamp(3em, 8vw, 6em);
+      font-size: clamp(2.5em, 5vw, 4em);
       font-weight: bold;
       text-shadow: 
         4px 4px 8px rgba(0, 0, 0, 0.9),
@@ -160,82 +161,87 @@
     }
 
     .rainbow-text span:nth-child(1) { 
-      transform: translateX(-45vw) translateY(-8vh) rotate(5deg); 
+      transform: translateX(-300px) translateY(-20px) rotate(3deg); 
       color: #ff6b6b; 
     }
     .rainbow-text span:nth-child(2) { 
-      transform: translateX(-35vw) translateY(-5vh) rotate(3deg); 
+      transform: translateX(-240px) translateY(-15px) rotate(2deg); 
       color: #ff8e53; 
     }
     .rainbow-text span:nth-child(3) { 
-      transform: translateX(-25vw) translateY(-2vh) rotate(1deg); 
+      transform: translateX(-180px) translateY(-10px) rotate(1deg); 
       color: #ff9f43; 
     }
     .rainbow-text span:nth-child(4) { 
-      transform: translateX(-15vw) translateY(1vh) rotate(-1deg); 
+      transform: translateX(-120px) translateY(-5px) rotate(0deg); 
       color: #feca57; 
     }
     .rainbow-text span:nth-child(5) { 
-      transform: translateX(-5vw) translateY(3vh) rotate(-2deg); 
+      transform: translateX(-60px) translateY(0px) rotate(-1deg); 
       color: #48ca73; 
     }
     .rainbow-text span:nth-child(6) { 
-      transform: translateX(0vw) translateY(4vh) rotate(-1deg); 
+      transform: translateX(-20px) translateY(5px) rotate(0deg); 
       color: transparent; 
     }
     .rainbow-text span:nth-child(7) { 
-      transform: translateX(8vw) translateY(3vh) rotate(1deg); 
+      transform: translateX(20px) translateY(0px) rotate(1deg); 
       color: #0abde3; 
     }
     .rainbow-text span:nth-child(8) { 
-      transform: translateX(16vw) translateY(1vh) rotate(2deg); 
+      transform: translateX(60px) translateY(-5px) rotate(0deg); 
       color: #006ba6; 
     }
     .rainbow-text span:nth-child(9) { 
-      transform: translateX(24vw) translateY(-2vh) rotate(-1deg); 
+      transform: translateX(100px) translateY(-10px) rotate(-1deg); 
       color: #574b90; 
     }
     .rainbow-text span:nth-child(10) { 
-      transform: translateX(32vw) translateY(-5vh) rotate(-3deg); 
+      transform: translateX(140px) translateY(-15px) rotate(-2deg); 
       color: #8854d0; 
     }
     .rainbow-text span:nth-child(11) { 
-      transform: translateX(40vw) translateY(-8vh) rotate(-5deg); 
+      transform: translateX(180px) translateY(-20px) rotate(-3deg); 
       color: #d63031; 
     }
     .rainbow-text span:nth-child(12) { 
-      transform: translateX(48vw) translateY(-12vh) rotate(-7deg); 
+      transform: translateX(220px) translateY(-25px) rotate(-4deg); 
       color: #fd79a8; 
     }
     .rainbow-text span:nth-child(13) { 
-      transform: translateX(56vw) translateY(-16vh) rotate(-9deg); 
+      transform: translateX(260px) translateY(-30px) rotate(-5deg); 
       color: #fdcb6e; 
     }
     .rainbow-text span:nth-child(14) { 
-      transform: translateX(64vw) translateY(-20vh) rotate(-11deg); 
+      transform: translateX(300px) translateY(-35px) rotate(-6deg); 
       color: #e17055; 
     }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
-      .rainbow-text span {
-        font-size: clamp(2em, 6vw, 4em);
+      .rainbow-text {
+        width: 90vw;
+        max-width: 600px;
       }
       
-      .rainbow-text span:nth-child(1) { transform: translateX(-40vw) translateY(-6vh) rotate(4deg); }
-      .rainbow-text span:nth-child(2) { transform: translateX(-30vw) translateY(-4vh) rotate(2deg); }
-      .rainbow-text span:nth-child(3) { transform: translateX(-20vw) translateY(-2vh) rotate(1deg); }
-      .rainbow-text span:nth-child(4) { transform: translateX(-12vw) translateY(0vh) rotate(-1deg); }
-      .rainbow-text span:nth-child(5) { transform: translateX(-4vw) translateY(2vh) rotate(-2deg); }
-      .rainbow-text span:nth-child(6) { transform: translateX(0vw) translateY(3vh) rotate(-1deg); }
-      .rainbow-text span:nth-child(7) { transform: translateX(6vw) translateY(2vh) rotate(1deg); }
-      .rainbow-text span:nth-child(8) { transform: translateX(12vw) translateY(0vh) rotate(2deg); }
-      .rainbow-text span:nth-child(9) { transform: translateX(18vw) translateY(-2vh) rotate(-1deg); }
-      .rainbow-text span:nth-child(10) { transform: translateX(24vw) translateY(-4vh) rotate(-3deg); }
-      .rainbow-text span:nth-child(11) { transform: translateX(30vw) translateY(-6vh) rotate(-4deg); }
-      .rainbow-text span:nth-child(12) { transform: translateX(36vw) translateY(-8vh) rotate(-5deg); }
-      .rainbow-text span:nth-child(13) { transform: translateX(42vw) translateY(-10vh) rotate(-6deg); }
-      .rainbow-text span:nth-child(14) { transform: translateX(48vw) translateY(-12vh) rotate(-7deg); }
+      .rainbow-text span {
+        font-size: clamp(1.8em, 4vw, 3em);
+      }
+      
+      .rainbow-text span:nth-child(1) { transform: translateX(-220px) translateY(-15px) rotate(2deg); }
+      .rainbow-text span:nth-child(2) { transform: translateX(-180px) translateY(-12px) rotate(1deg); }
+      .rainbow-text span:nth-child(3) { transform: translateX(-140px) translateY(-8px) rotate(1deg); }
+      .rainbow-text span:nth-child(4) { transform: translateX(-100px) translateY(-4px) rotate(0deg); }
+      .rainbow-text span:nth-child(5) { transform: translateX(-60px) translateY(0px) rotate(-1deg); }
+      .rainbow-text span:nth-child(6) { transform: translateX(-20px) translateY(3px) rotate(0deg); }
+      .rainbow-text span:nth-child(7) { transform: translateX(20px) translateY(0px) rotate(1deg); }
+      .rainbow-text span:nth-child(8) { transform: translateX(60px) translateY(-4px) rotate(0deg); }
+      .rainbow-text span:nth-child(9) { transform: translateX(100px) translateY(-8px) rotate(-1deg); }
+      .rainbow-text span:nth-child(10) { transform: translateX(140px) translateY(-12px) rotate(-2deg); }
+      .rainbow-text span:nth-child(11) { transform: translateX(180px) translateY(-15px) rotate(-2deg); }
+      .rainbow-text span:nth-child(12) { transform: translateX(220px) translateY(-18px) rotate(-3deg); }
+      .rainbow-text span:nth-child(13) { transform: translateX(260px) translateY(-22px) rotate(-4deg); }
+      .rainbow-text span:nth-child(14) { transform: translateX(300px) translateY(-25px) rotate(-5deg); }
     }
   </style>
 </head>

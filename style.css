@@ -6,15 +6,26 @@ body, html {
   overflow: hidden;
 }
 
+.background-layer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('gift_card_pic.jpg'); /* Replace with your real image */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* Dimming Overlay (separate from background) */
 .dim-overlay {
   position: fixed;
   top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* initial dimmed */
-  background-size: cover;
-  background-position: center;
-  background-image: url('gift_card_pic.jpg'); /* your background photo */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Starts dimmed */
   z-index: 1;
+  transition: background-color 0.5s ease;
 }
 
 .start-screen {
@@ -34,6 +45,12 @@ body, html {
   border: none;
   border-radius: 12px;
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.start-screen button:hover {
+  transform: translateY(-2px);
 }
 
 .overlay {
@@ -53,36 +70,5 @@ body, html {
 .message p {
   font-size: 1.2em;
   margin: 0.5em 0;
-}
-
-.background {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url('your-photo.jpg');
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-}
-
-.background-layer {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('your-photo.jpg'); /* Replace with your real image */
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-}
-
-/* Dimming Overlay (modified) */
-.dim-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Starts dimmed */
-  z-index: 1;
-  transition: background-color 0.5s ease;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

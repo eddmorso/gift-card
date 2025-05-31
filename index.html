@@ -8,8 +8,7 @@
 </head>
 <body>
   <div class="background-layer"></div>
-  
-  <div class="dim-overlay" id="dimOverlay"></div>  </div>
+  <div class="dim-overlay" id="dimOverlay"></div>
 
   <div class="start-screen" id="startScreen">
     <button id="startButton">🎵 Tap to Start the Surprise 🎁</button>
@@ -46,8 +45,8 @@
       startScreen.style.display = 'none';
       giftContent.style.display = 'flex';
 
-      // Lighten background
-      dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+      // Brighten background by reducing the dim overlay opacity
+      dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
     });
   </script>
 </body>

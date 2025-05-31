@@ -131,10 +131,36 @@
       min-width: 100vw;
     }
 
-    .message p {
-      font-size: 1.2em;
-      margin: 0.5em 0;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    .message {
+      position: relative;
+      max-width: 90%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2em;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .main-greeting {
+      font-size: 2.5em !important;
+      font-weight: bold;
+      margin: 0.3em 0 !important;
+      background: linear-gradient(135deg, #f093fb, #f5576c, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+
+    .sub-message {
+      font-size: 1.3em !important;
+      margin: 0.5em 0 !important;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
   </style>
 </head>
@@ -148,9 +174,9 @@
 
   <div class="overlay" id="giftContent">
     <div class="message">
-      <p>💝 Just for you</p>
-      <p>May this little gift brighten your day.</p>
-      <p>Enjoy the music 🎶</p>
+      <p class="main-greeting">🎉 Happy Pyozday! 🎉</p>
+      <p class="sub-message">May this little gift brighten your day.</p>
+      <p class="sub-message">Enjoy the music 🎶</p>
     </div>
   </div>
 

@@ -142,9 +142,8 @@
 
     .rainbow-text {
       position: relative;
-      width: 70vw;
-      max-width: 800px;
-      height: 300px;
+      width: 600px;
+      height: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -152,7 +151,7 @@
 
     .rainbow-text span {
       position: absolute;
-      font-size: clamp(2.5em, 5vw, 4em);
+      font-size: 3.5em;
       font-weight: bold;
       text-shadow: 
         4px 4px 8px rgba(0, 0, 0, 0.9),
@@ -160,88 +159,91 @@
       transform-origin: center center;
     }
 
+    /* Happy - letters 1-5 */
     .rainbow-text span:nth-child(1) { 
-      transform: translateX(-300px) translateY(-20px) rotate(3deg); 
+      transform: translateX(-240px) translateY(-45px) rotate(-15deg); 
       color: #ff6b6b; 
     }
     .rainbow-text span:nth-child(2) { 
-      transform: translateX(-240px) translateY(-15px) rotate(2deg); 
+      transform: translateX(-180px) translateY(-65px) rotate(-10deg); 
       color: #ff8e53; 
     }
     .rainbow-text span:nth-child(3) { 
-      transform: translateX(-180px) translateY(-10px) rotate(1deg); 
+      transform: translateX(-120px) translateY(-75px) rotate(-5deg); 
       color: #ff9f43; 
     }
     .rainbow-text span:nth-child(4) { 
-      transform: translateX(-120px) translateY(-5px) rotate(0deg); 
+      transform: translateX(-60px) translateY(-80px) rotate(0deg); 
       color: #feca57; 
     }
     .rainbow-text span:nth-child(5) { 
-      transform: translateX(-60px) translateY(0px) rotate(-1deg); 
+      transform: translateX(0px) translateY(-75px) rotate(5deg); 
       color: #48ca73; 
     }
+    
+    /* Space - letter 6 */
     .rainbow-text span:nth-child(6) { 
-      transform: translateX(-20px) translateY(5px) rotate(0deg); 
+      transform: translateX(30px) translateY(-70px) rotate(7deg); 
       color: transparent; 
     }
+    
+    /* Pyozday - letters 7-14 */
     .rainbow-text span:nth-child(7) { 
-      transform: translateX(20px) translateY(0px) rotate(1deg); 
+      transform: translateX(60px) translateY(-75px) rotate(10deg); 
       color: #0abde3; 
     }
     .rainbow-text span:nth-child(8) { 
-      transform: translateX(60px) translateY(-5px) rotate(0deg); 
+      transform: translateX(120px) translateY(-80px) rotate(15deg); 
       color: #006ba6; 
     }
     .rainbow-text span:nth-child(9) { 
-      transform: translateX(100px) translateY(-10px) rotate(-1deg); 
+      transform: translateX(180px) translateY(-75px) rotate(20deg); 
       color: #574b90; 
     }
     .rainbow-text span:nth-child(10) { 
-      transform: translateX(140px) translateY(-15px) rotate(-2deg); 
+      transform: translateX(240px) translateY(-65px) rotate(25deg); 
       color: #8854d0; 
     }
     .rainbow-text span:nth-child(11) { 
-      transform: translateX(180px) translateY(-20px) rotate(-3deg); 
+      transform: translateX(300px) translateY(-45px) rotate(30deg); 
       color: #d63031; 
     }
     .rainbow-text span:nth-child(12) { 
-      transform: translateX(220px) translateY(-25px) rotate(-4deg); 
+      transform: translateX(360px) translateY(-20px) rotate(35deg); 
       color: #fd79a8; 
     }
     .rainbow-text span:nth-child(13) { 
-      transform: translateX(260px) translateY(-30px) rotate(-5deg); 
+      transform: translateX(420px) translateY(10px) rotate(40deg); 
       color: #fdcb6e; 
     }
     .rainbow-text span:nth-child(14) { 
-      transform: translateX(300px) translateY(-35px) rotate(-6deg); 
+      transform: translateX(480px) translateY(45px) rotate(45deg); 
       color: #e17055; 
     }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .rainbow-text {
-        width: 90vw;
-        max-width: 600px;
+        width: 400px;
+        height: 150px;
+        transform: scale(0.8);
       }
       
       .rainbow-text span {
-        font-size: clamp(1.8em, 4vw, 3em);
+        font-size: 2.5em;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .rainbow-text {
+        width: 350px;
+        height: 120px;
+        transform: scale(0.6);
       }
       
-      .rainbow-text span:nth-child(1) { transform: translateX(-220px) translateY(-15px) rotate(2deg); }
-      .rainbow-text span:nth-child(2) { transform: translateX(-180px) translateY(-12px) rotate(1deg); }
-      .rainbow-text span:nth-child(3) { transform: translateX(-140px) translateY(-8px) rotate(1deg); }
-      .rainbow-text span:nth-child(4) { transform: translateX(-100px) translateY(-4px) rotate(0deg); }
-      .rainbow-text span:nth-child(5) { transform: translateX(-60px) translateY(0px) rotate(-1deg); }
-      .rainbow-text span:nth-child(6) { transform: translateX(-20px) translateY(3px) rotate(0deg); }
-      .rainbow-text span:nth-child(7) { transform: translateX(20px) translateY(0px) rotate(1deg); }
-      .rainbow-text span:nth-child(8) { transform: translateX(60px) translateY(-4px) rotate(0deg); }
-      .rainbow-text span:nth-child(9) { transform: translateX(100px) translateY(-8px) rotate(-1deg); }
-      .rainbow-text span:nth-child(10) { transform: translateX(140px) translateY(-12px) rotate(-2deg); }
-      .rainbow-text span:nth-child(11) { transform: translateX(180px) translateY(-15px) rotate(-2deg); }
-      .rainbow-text span:nth-child(12) { transform: translateX(220px) translateY(-18px) rotate(-3deg); }
-      .rainbow-text span:nth-child(13) { transform: translateX(260px) translateY(-22px) rotate(-4deg); }
-      .rainbow-text span:nth-child(14) { transform: translateX(300px) translateY(-25px) rotate(-5deg); }
+      .rainbow-text span {
+        font-size: 2em;
+      }
     }
   </style>
 </head>

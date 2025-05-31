@@ -136,113 +136,62 @@
       width: 100%;
       height: 100%;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
+      padding-bottom: 40px;
     }
 
     .rainbow-text {
       position: relative;
-      width: 600px;
-      height: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 0;
     }
 
     .rainbow-text span {
-      position: absolute;
-      font-size: 3.5em;
+      font-size: 4em;
       font-weight: bold;
       text-shadow: 
         4px 4px 8px rgba(0, 0, 0, 0.9),
         0 0 20px rgba(255, 255, 255, 0.5);
-      transform-origin: center center;
+      margin: 0 2px;
     }
 
-    /* Happy - letters 1-5 (upward curve from left to center) */
-    .rainbow-text span:nth-child(1) { 
-      transform: translateX(-240px) translateY(45px) rotate(-45deg); 
-      color: #ff6b6b; 
-    }
-    .rainbow-text span:nth-child(2) { 
-      transform: translateX(-180px) translateY(10px) rotate(-35deg); 
-      color: #ff8e53; 
-    }
-    .rainbow-text span:nth-child(3) { 
-      transform: translateX(-120px) translateY(-20px) rotate(-25deg); 
-      color: #ff9f43; 
-    }
-    .rainbow-text span:nth-child(4) { 
-      transform: translateX(-60px) translateY(-45px) rotate(-15deg); 
-      color: #feca57; 
-    }
-    .rainbow-text span:nth-child(5) { 
-      transform: translateX(0px) translateY(-65px) rotate(-5deg); 
-      color: #48ca73; 
-    }
-    
-    /* Space - letter 6 */
-    .rainbow-text span:nth-child(6) { 
-      transform: translateX(30px) translateY(-70px) rotate(0deg); 
-      color: transparent; 
-    }
-    
-    /* Pyozday - letters 7-14 (continuing upward curve from center to right) */
-    .rainbow-text span:nth-child(7) { 
-      transform: translateX(60px) translateY(-65px) rotate(5deg); 
-      color: #0abde3; 
-    }
-    .rainbow-text span:nth-child(8) { 
-      transform: translateX(120px) translateY(-45px) rotate(15deg); 
-      color: #006ba6; 
-    }
-    .rainbow-text span:nth-child(9) { 
-      transform: translateX(180px) translateY(-20px) rotate(25deg); 
-      color: #574b90; 
-    }
-    .rainbow-text span:nth-child(10) { 
-      transform: translateX(240px) translateY(10px) rotate(35deg); 
-      color: #8854d0; 
-    }
-    .rainbow-text span:nth-child(11) { 
-      transform: translateX(300px) translateY(45px) rotate(45deg); 
-      color: #d63031; 
-    }
-    .rainbow-text span:nth-child(12) { 
-      transform: translateX(360px) translateY(85px) rotate(55deg); 
-      color: #fd79a8; 
-    }
-    .rainbow-text span:nth-child(13) { 
-      transform: translateX(420px) translateY(130px) rotate(65deg); 
-      color: #fdcb6e; 
-    }
-    .rainbow-text span:nth-child(14) { 
-      transform: translateX(480px) translateY(180px) rotate(75deg); 
-      color: #e17055; 
-    }
+    .rainbow-text span:nth-child(1) { color: #ff6b6b; }
+    .rainbow-text span:nth-child(2) { color: #ff8e53; }
+    .rainbow-text span:nth-child(3) { color: #ff9f43; }
+    .rainbow-text span:nth-child(4) { color: #feca57; }
+    .rainbow-text span:nth-child(5) { color: #48ca73; }
+    .rainbow-text span:nth-child(6) { color: transparent; margin: 0 10px; }
+    .rainbow-text span:nth-child(7) { color: #0abde3; }
+    .rainbow-text span:nth-child(8) { color: #006ba6; }
+    .rainbow-text span:nth-child(9) { color: #574b90; }
+    .rainbow-text span:nth-child(10) { color: #8854d0; }
+    .rainbow-text span:nth-child(11) { color: #d63031; }
+    .rainbow-text span:nth-child(12) { color: #fd79a8; }
+    .rainbow-text span:nth-child(13) { color: #fdcb6e; }
+    .rainbow-text span:nth-child(14) { color: #e17055; }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
-      .rainbow-text {
-        width: 400px;
-        height: 150px;
-        transform: scale(0.8);
+      .rainbow-text span {
+        font-size: 3em;
       }
       
-      .rainbow-text span {
-        font-size: 2.5em;
+      .curved-text {
+        padding-bottom: 30px;
       }
     }
     
     @media (max-width: 480px) {
-      .rainbow-text {
-        width: 350px;
-        height: 120px;
-        transform: scale(0.6);
+      .rainbow-text span {
+        font-size: 2.2em;
+        margin: 0 1px;
       }
       
-      .rainbow-text span {
-        font-size: 2em;
+      .curved-text {
+        padding-bottom: 20px;
       }
     }
   </style>

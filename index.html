@@ -58,6 +58,40 @@
       min-width: 100vw;
     }
 
+    /* Donut rain container */
+    .donut-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1.5;
+      overflow: hidden;
+    }
+
+    /* Individual donut styles */
+    .donut {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.8;
+      animation: fall linear infinite;
+      transform-origin: center;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(calc(100vh + 100px)) rotate(360deg);
+      }
+    }
+
     .start-screen {
       position: fixed;
       top: 0; 
@@ -182,6 +216,11 @@
       .curved-text {
         bottom: 25%;
       }
+
+      .donut {
+        width: 30px;
+        height: 30px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -193,12 +232,20 @@
       .curved-text {
         bottom: 30%;
       }
+
+      .donut {
+        width: 25px;
+        height: 25px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="background-layer"></div>
   <div class="dim-overlay" id="dimOverlay"></div>
+  
+  <!-- Donut rain container -->
+  <div class="donut-rain" id="donutRain"></div>
 
   <div class="start-screen" id="startScreen">
     <button id="startButton">🎵 Tap to Start the Surprise 🎁</button>
@@ -237,6 +284,75 @@
     const giftContent = document.getElementById('giftContent');
     const dimOverlay = document.getElementById('dimOverlay');
     const bgMusic = document.getElementById('bgMusic');
+    const donutRain = document.getElementById('donutRain');
+
+    // Array of your donut image URLs - replace these with your actual PNG file paths
+    const donutImages = [
+      'donut1.png',
+      'donut2.png',
+      'donut3.png',
+      'donut4.png',
+      'donut5.png',
+      'donut6.png',
+      'donut7.png',
+      'donut8.png',
+      'donut9.png',
+      'donut10.png',
+      'donut11.png' 
+    ];
+
+    function createDonut() {
+      const donut = document.createElement('div');
+      donut.className = 'donut';
+      
+      // Randomly select a donut image
+      const randomImage = donutImages[Math.floor(Math.random() * donutImages.length)];
+      donut.style.backgroundImage = `url('${randomImage}')`;
+      
+      // Random horizontal position
+      donut.style.left = Math.random() * 100 + 'vw';
+      
+      // Random size variation
+      const size = 30 + Math.random() * 30; // 30-60px
+      donut.style.width = size + 'px';
+      donut.style.height = size + 'px';
+      
+      // Random animation duration (fall speed)
+      const duration = 3 + Math.random() * 4; // 3-7 seconds
+      donut.style.animationDuration = duration + 's';
+      
+      // Random opacity
+      donut.style.opacity = 0.6 + Math.random() * 0.4; // 0.6-1.0
+      
+      // Random rotation direction
+      if (Math.random() > 0.5) {
+        donut.style.animationDirection = 'reverse';
+      }
+      
+      donutRain.appendChild(donut);
+      
+      // Remove donut after animation completes
+      setTimeout(() => {
+        if (donut.parentNode) {
+          donut.parentNode.removeChild(donut);
+        }
+      }, duration * 1000 + 1000);
+    }
+
+    let donutInterval;
+
+    function startDonutRain() {
+      // Create donuts at regular intervals
+      donutInterval = setInterval(createDonut, 300); // New donut every 300ms
+    }
+
+    function stopDonutRain() {
+      if (donutInterval) {
+        clearInterval(donutInterval);
+      }
+      // Clear existing donuts
+      donutRain.innerHTML = '';
+    }
 
     startButton.addEventListener('click', () => {
       bgMusic.play().then(() => {
@@ -251,7 +367,15 @@
 
       // Brighten background by reducing the dim overlay opacity
       dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+      
+      // Start the donut rain
+      startDonutRain();
     });
+
+    // Optional: Stop donut rain after some time to prevent performance issues
+    // setTimeout(() => {
+    //   stopDonutRain();
+    // }, 60000); // Stop after 1 minute
   </script>
 </body>
 </html>

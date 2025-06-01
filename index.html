@@ -94,17 +94,20 @@
 
     /* Firework explosion styles */
     .firework {
-      position: absolute;
+      position: fixed;
       pointer-events: none;
-      z-index: 2;
+      z-index: 10;
+      width: 0;
+      height: 0;
     }
 
     .firework-particle {
       position: absolute;
-      width: 4px;
-      height: 4px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      animation: explode 0.8s ease-out forwards;
+      box-shadow: 0 0 6px currentColor;
+      animation: explode 1.2s ease-out forwards;
     }
 
     @keyframes explode {
@@ -112,11 +115,11 @@
         transform: translate(0, 0) scale(1);
         opacity: 1;
       }
-      50% {
+      70% {
         opacity: 1;
       }
       100% {
-        transform: var(--direction) scale(0.3);
+        transform: var(--direction) scale(0.1);
         opacity: 0;
       }
     }
@@ -361,6 +364,8 @@
       firework.style.left = x + 'px';
       firework.style.top = y + 'px';
       
+      console.log('Creating firework at:', x, y); // Debug log
+      
       // Create particles for the explosion
       const particleCount = 12;
       const colors = [];
@@ -443,21 +448,27 @@
       
       donutRain.appendChild(donut);
       
-      // Calculate when donut reaches bottom and create firework
+      // Calculate when donut reaches about 80% of the screen and create firework
       setTimeout(() => {
         if (donut.parentNode) {
-          // Get donut position for firework
-          const rect = donut.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
+          // Calculate firework position based on donut's expected position
+          const viewportWidth = window.innerWidth;
+          const donutX = (leftPos / 100) * viewportWidth + size / 2;
+          const donutY = window.innerHeight * 0.8; // 80% down the screen
           
-          // Create firework at donut position
-          createFirework(centerX, centerY);
+          console.log('Donut position for firework:', donutX, donutY); // Debug log
           
-          // Remove donut
-          donut.parentNode.removeChild(donut);
+          // Create firework at calculated position
+          createFirework(donutX, donutY);
+          
+          // Remove donut after a short delay to let firework show
+          setTimeout(() => {
+            if (donut.parentNode) {
+              donut.parentNode.removeChild(donut);
+            }
+          }, 200);
         }
-      }, duration * 1000);
+      }, duration * 1000 * 0.8); // Trigger at 80% of fall duration
     }
 
     let donutInterval;

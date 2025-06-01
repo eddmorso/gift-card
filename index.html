@@ -103,11 +103,11 @@
 
     .firework-particle {
       position: absolute;
-      width: 8px;
-      height: 8px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      box-shadow: 0 0 6px currentColor;
-      animation: explode 1.2s ease-out forwards;
+      box-shadow: 0 0 12px currentColor, 0 0 24px currentColor;
+      animation: explode 1.5s ease-out forwards;
     }
 
     @keyframes explode {
@@ -366,8 +366,8 @@
       
       console.log('Creating firework at:', x, y); // Debug log
       
-      // Create particles for the explosion
-      const particleCount = 12;
+      // Create particles for the explosion - more particles for bigger impact
+      const particleCount = 20;
       const colors = [];
       
       // Select 3-4 random colors for this firework
@@ -382,9 +382,9 @@
         // Random color from selected colors
         particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         
-        // Calculate explosion direction
+        // Calculate explosion direction with much larger radius
         const angle = (i / particleCount) * 2 * Math.PI;
-        const distance = 50 + Math.random() * 40; // 50-90px
+        const distance = 120 + Math.random() * 80; // Much bigger: 120-200px
         const offsetX = Math.cos(angle) * distance;
         const offsetY = Math.sin(angle) * distance;
         
@@ -396,15 +396,15 @@
         firework.appendChild(particle);
       }
       
-      // Add sparkle effects
-      const sparkleCount = 8;
+      // Add more sparkle effects for bigger fireworks
+      const sparkleCount = 16;
       for (let i = 0; i < sparkleCount; i++) {
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         
-        // Random position around the center
-        const sparkleX = (Math.random() - 0.5) * 30;
-        const sparkleY = (Math.random() - 0.5) * 30;
+        // Random position around the center with larger spread
+        const sparkleX = (Math.random() - 0.5) * 80;
+        const sparkleY = (Math.random() - 0.5) * 80;
         sparkle.style.left = sparkleX + 'px';
         sparkle.style.top = sparkleY + 'px';
         sparkle.style.animationDelay = Math.random() * 0.3 + 's';
@@ -414,12 +414,12 @@
       
       document.body.appendChild(firework);
       
-      // Remove firework after animation
+      // Remove firework after longer animation
       setTimeout(() => {
         if (firework.parentNode) {
           firework.parentNode.removeChild(firework);
         }
-      }, 1000);
+      }, 1800);
     }
 
     function createDonut() {
@@ -451,15 +451,14 @@
       // Calculate when donut reaches about 80% of the screen and create firework
       setTimeout(() => {
         if (donut.parentNode) {
-          // Calculate firework position based on donut's expected position
-          const viewportWidth = window.innerWidth;
-          const donutX = (leftPos / 100) * viewportWidth + size / 2;
-          const donutY = window.innerHeight * 0.8; // 80% down the screen
+          // Create firework at center of screen for maximum impact
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
           
-          console.log('Donut position for firework:', donutX, donutY); // Debug log
+          console.log('Creating center firework at:', centerX, centerY); // Debug log
           
-          // Create firework at calculated position
-          createFirework(donutX, donutY);
+          // Create firework at screen center
+          createFirework(centerX, centerY);
           
           // Remove donut after a short delay to let firework show
           setTimeout(() => {

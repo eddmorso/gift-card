@@ -4,305 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gift Card</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      font-family: sans-serif;
-      overflow: hidden;
-      /* Prevent mobile browser address bar issues */
-      position: relative;
-    }
-
-    .background-layer {
-      position: fixed;
-      top: 0; 
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      /* Alternative fallback for older browsers */
-      width: 100%;
-      height: 100%;
-      /* Image first, then gradient as fallback */
-      background-image: 
-        url('gift_card_pic.png'),
-        linear-gradient(135deg, #667eea 0%, #764ba2 25%, #d4567a 50%, #f093fb 75%, #f5576c 100%);
-      background-size: contain, cover;
-      background-position: center center, center center;
-      background-repeat: no-repeat, no-repeat;
-      background-attachment: fixed;
-      /* Fallback color */
-      background-color: #d4567a;
-      z-index: 0;
-      /* Ensure it covers everything */
-      min-height: 100vh;
-      min-width: 100vw;
-    }
-
-    /* Dimming Overlay (separate from background) */
-    .dim-overlay {
-      position: fixed;
-      top: 0; 
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      /* Alternative fallback */
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7); /* Starts dimmed */
-      z-index: 1;
-      transition: background-color 0.5s ease;
-      min-height: 100vh;
-      min-width: 100vw;
-    }
-
-    /* Donut rain container */
-    .donut-rain {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 1.5;
-      overflow: hidden;
-    }
-
-    /* Individual donut styles */
-    .donut {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      opacity: 0.9;
-      animation: fall linear infinite;
-      transform-origin: center;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-      }
-      100% {
-        transform: translateY(calc(100vh + 100px)) rotate(360deg);
-      }
-    }
-
-    /* Firework explosion styles */
-    .firework {
-      position: fixed;
-      pointer-events: none;
-      z-index: 10;
-      width: 0;
-      height: 0;
-    }
-
-    .firework-particle {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      box-shadow: 0 0 12px currentColor, 0 0 24px currentColor;
-      left: -6px;
-      top: -6px;
-    }
-
-    @keyframes explodeParticle {
-      0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-      70% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: scale(0.2);
-      }
-    }
-
-    /* Sparkle effect for fireworks */
-    .sparkle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: sparkle 0.6s ease-out forwards;
-    }
-
-    @keyframes sparkle {
-      0% {
-        transform: scale(0) rotate(0deg);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1) rotate(180deg);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(0) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    .start-screen {
-      position: fixed;
-      top: 0; 
-      left: 0;
-      width: 100vw; 
-      height: 100vh;
-      /* Alternative fallback */
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2;
-      min-height: 100vh;
-      min-width: 100vw;
-    }
-
-    .start-screen button {
-      font-size: 1.5em;
-      padding: 1.2em 2.5em;
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #d4567a 100%);
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      color: white;
-      font-weight: bold;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      box-shadow: 
-        0 8px 25px rgba(212, 86, 122, 0.4),
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .start-screen button:hover {
-      transform: translateY(-3px);
-      box-shadow: 
-        0 12px 35px rgba(212, 86, 122, 0.5),
-        0 6px 20px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      background: linear-gradient(135deg, #f5576c 0%, #d4567a 50%, #764ba2 100%);
-    }
-
-    .start-screen button:active {
-      transform: translateY(-1px);
-      box-shadow: 
-        0 6px 20px rgba(212, 86, 122, 0.3),
-        0 3px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .overlay {
-      top: 0; 
-      left: 0;
-      width: 100vw; 
-      height: 100vh;
-      /* Alternative fallback */
-      width: 100%;
-      height: 100%;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      z-index: 3;
-      text-align: center;
-      padding: 1em;
-      min-height: 100vh;
-      min-width: 100vw;
-    }
-
-    .curved-text {
-      position: absolute;
-      bottom: 20%;
-      left: 0;
-      right: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .rainbow-text {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-    }
-
-    .rainbow-text span {
-      font-size: 5em;
-      font-weight: bold;
-      text-shadow: 
-        4px 4px 8px rgba(0, 0, 0, 0.9),
-        0 0 20px rgba(255, 255, 255, 0.5);
-      margin: 0 2px;
-    }
-
-    .rainbow-text span:nth-child(1) { color: #ff6b6b; }
-    .rainbow-text span:nth-child(2) { color: #ff8e53; }
-    .rainbow-text span:nth-child(3) { color: #ff9f43; }
-    .rainbow-text span:nth-child(4) { color: #feca57; }
-    .rainbow-text span:nth-child(5) { color: #48ca73; }
-    .rainbow-text span:nth-child(6) { color: transparent; margin: 0 10px; }
-    .rainbow-text span:nth-child(7) { color: #0abde3; }
-    .rainbow-text span:nth-child(8) { color: #006ba6; }
-    .rainbow-text span:nth-child(9) { color: #574b90; }
-    .rainbow-text span:nth-child(10) { color: #8854d0; }
-    .rainbow-text span:nth-child(11) { color: #d63031; }
-    .rainbow-text span:nth-child(12) { color: #fd79a8; }
-    .rainbow-text span:nth-child(13) { color: #fdcb6e; }
-    .rainbow-text span:nth-child(14) { color: #e17055; }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .rainbow-text span {
-        font-size: 3em;
-      }
-      
-      .curved-text {
-        bottom: 25%;
-      }
-
-      .donut {
-        width: 60px;
-        height: 60px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .rainbow-text span {
-        font-size: 2.2em;
-        margin: 0 1px;
-      }
-      
-      .curved-text {
-        bottom: 30%;
-      }
-
-      .donut {
-        width: 50px;
-        height: 50px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="background-layer"></div>
   <div class="dim-overlay" id="dimOverlay"></div>
   
-  <!-- Donut rain container -->
   <div class="donut-rain" id="donutRain"></div>
 
   <div class="start-screen" id="startScreen">
@@ -344,7 +51,6 @@
     const bgMusic = document.getElementById('bgMusic');
     const donutRain = document.getElementById('donutRain');
 
-    // Array of your donut image URLs - replace these with your actual PNG file paths
     const donutImages = [
       'donut1.png',
       'donut2.png',
@@ -352,7 +58,6 @@
       'donut4.png'
     ];
 
-    // Firework colors
     const fireworkColors = [
       '#ff6b6b', '#ff8e53', '#ff9f43', '#feca57', '#48ca73',
       '#0abde3', '#006ba6', '#574b90', '#8854d0', '#d63031',
@@ -365,13 +70,11 @@
       firework.style.left = x + 'px';
       firework.style.top = y + 'px';
       
-      console.log('Creating firework at:', x, y); // Debug log
-      
-      // Create particles for the explosion - more particles for bigger impact
+      console.log('Creating firework at:', x, y);
+
       const particleCount = 20;
       const colors = [];
       
-      // Select 3-4 random colors for this firework
       for (let i = 0; i < 4; i++) {
         colors.push(fireworkColors[Math.floor(Math.random() * fireworkColors.length)]);
       }
@@ -380,16 +83,13 @@
         const particle = document.createElement('div');
         particle.className = 'firework-particle';
         
-        // Random color from selected colors
         particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         
-        // Calculate explosion direction with much larger radius to spread across screen
         const angle = (i / particleCount) * 2 * Math.PI;
-        const distance = 200 + Math.random() * 300; // Much bigger: 200-500px
+        const distance = 200 + Math.random() * 300;
         const offsetX = Math.cos(angle) * distance;
         const offsetY = Math.sin(angle) * distance;
         
-        // Create unique keyframe animation for this particle
         const animationName = `explode-${Date.now()}-${i}`;
         const keyframes = `
           @keyframes ${animationName} {
@@ -407,18 +107,15 @@
           }
         `;
         
-        // Add keyframes to document
         const style = document.createElement('style');
         style.textContent = keyframes;
         document.head.appendChild(style);
         
-        // Apply animation to particle
         particle.style.animation = `${animationName} 1.5s ease-out forwards`;
         particle.style.animationDelay = Math.random() * 0.1 + 's';
         
         firework.appendChild(particle);
         
-        // Clean up keyframes after animation
         setTimeout(() => {
           if (style.parentNode) {
             style.parentNode.removeChild(style);
@@ -426,13 +123,11 @@
         }, 2000);
       }
       
-      // Add more sparkle effects for bigger fireworks
       const sparkleCount = 16;
       for (let i = 0; i < sparkleCount; i++) {
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         
-        // Random position around the center with larger spread
         const sparkleX = (Math.random() - 0.5) * 80;
         const sparkleY = (Math.random() - 0.5) * 80;
         sparkle.style.left = sparkleX + 'px';
@@ -444,7 +139,6 @@
       
       document.body.appendChild(firework);
       
-      // Remove firework after longer animation
       setTimeout(() => {
         if (firework.parentNode) {
           firework.parentNode.removeChild(firework);
@@ -456,59 +150,49 @@
       const donut = document.createElement('div');
       donut.className = 'donut';
       
-      // Randomly select a donut image
       const randomImage = donutImages[Math.floor(Math.random() * donutImages.length)];
       donut.style.backgroundImage = `url('${randomImage}')`;
       
-      // Random horizontal position
-      const leftPos = Math.random() * (100 - 10); // Keep some margin
+      const leftPos = Math.random() * (100 - 10);
       donut.style.left = leftPos + 'vw';
       
-      // Random size variation
       const size = 60 + Math.random() * 100;
       donut.style.width = size + 'px';
       donut.style.height = size + 'px';
       
-      // Random animation duration (fall speed)
-      const duration = 4 + Math.random() * 3; // 4-7 seconds
+      const duration = 4 + Math.random() * 3; 
       donut.style.animationDuration = duration + 's';
       
       donutRain.appendChild(donut);
       
-      // Calculate when donut reaches about 80% of the screen and create firework
       setTimeout(() => {
         if (donut.parentNode) {
-          // Create firework at center of screen for maximum impact
           const centerX = window.innerWidth / 2;
           const centerY = window.innerHeight / 2;
           
-          console.log('Creating center firework at:', centerX, centerY); // Debug log
+          console.log('Creating center firework at:', centerX, centerY);
           
-          // Create firework at screen center
           createFirework(centerX, centerY);
           
-          // Remove donut after a short delay to let firework show
           setTimeout(() => {
             if (donut.parentNode) {
               donut.parentNode.removeChild(donut);
             }
           }, 200);
         }
-      }, duration * 1000 * 0.8); // Trigger at 80% of fall duration
+      }, duration * 1000 * 0.8);
     }
 
     let donutInterval;
 
     function startDonutRain() {
-      // Create donuts at regular intervals
-      donutInterval = setInterval(createDonut, 300); // New donut every 300ms
+      donutInterval = setInterval(createDonut, 300);
     }
 
     function stopDonutRain() {
       if (donutInterval) {
         clearInterval(donutInterval);
       }
-      // Clear existing donuts
       donutRain.innerHTML = '';
     }
 
@@ -523,17 +207,10 @@
       startScreen.style.display = 'none';
       giftContent.style.display = 'flex';
 
-      // Brighten background by reducing the dim overlay opacity
       dimOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
       
-      // Start the donut rain
       startDonutRain();
     });
-
-    // Optional: Stop donut rain after some time to prevent performance issues
-    // setTimeout(() => {
-    //   stopDonutRain();
-    // }, 60000); // Stop after 1 minute
   </script>
 </body>
 </html>

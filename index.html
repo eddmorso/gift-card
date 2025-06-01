@@ -73,8 +73,8 @@
     /* Individual donut styles */
     .donut {
       position: absolute;
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -82,8 +82,6 @@
       animation: fall linear infinite;
       transform-origin: center;
     }
-
-
 
     @keyframes fall {
       0% {
@@ -319,10 +317,8 @@
       // Random opacity
       donut.style.opacity = 0.8 + Math.random() * 0.2; // 0.8-1.0
       
-      // Random rotation direction
-      if (Math.random() > 0.5) {
-        donut.style.animationDirection = 'reverse';
-      }
+      // REMOVED: Random rotation direction - now all donuts fall from top only
+      // The animation direction is now always 'normal' (default)
       
       donutRain.appendChild(donut);
       

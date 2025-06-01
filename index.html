@@ -112,7 +112,7 @@
 
     @keyframes explode {
       0% {
-        transform: translate(0, 0) scale(1);
+        transform: translate(-6px, -6px) scale(1);
         opacity: 1;
       }
       70% {
@@ -388,7 +388,12 @@
         const offsetX = Math.cos(angle) * distance;
         const offsetY = Math.sin(angle) * distance;
         
+        // Set the direction directly in the transform style
         particle.style.setProperty('--direction', `translate(${offsetX}px, ${offsetY}px)`);
+        
+        // Also set initial position to center of firework
+        particle.style.left = '0px';
+        particle.style.top = '0px';
         
         // Add some randomness to timing
         particle.style.animationDelay = Math.random() * 0.1 + 's';

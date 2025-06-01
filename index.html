@@ -73,15 +73,17 @@
     /* Individual donut styles */
     .donut {
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 80px;
+      height: 80px;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      opacity: 0.8;
+      opacity: 0.9;
       animation: fall linear infinite;
       transform-origin: center;
     }
+
+
 
     @keyframes fall {
       0% {
@@ -218,8 +220,8 @@
       }
 
       .donut {
-        width: 30px;
-        height: 30px;
+        width: 60px;
+        height: 60px;
       }
     }
     
@@ -234,8 +236,8 @@
       }
 
       .donut {
-        width: 25px;
-        height: 25px;
+        width: 50px;
+        height: 50px;
       }
     }
   </style>
@@ -288,17 +290,10 @@
 
     // Array of your donut image URLs - replace these with your actual PNG file paths
     const donutImages = [
-      'donut1.png',
+      'donut1.png',  // Replace with your actual donut PNG files
       'donut2.png',
       'donut3.png',
-      'donut4.png',
-      'donut5.png',
-      'donut6.png',
-      'donut7.png',
-      'donut8.png',
-      'donut9.png',
-      'donut10.png',
-      'donut11.png' 
+      'donut4.png'   // Add more as needed
     ];
 
     function createDonut() {
@@ -313,16 +308,16 @@
       donut.style.left = Math.random() * 100 + 'vw';
       
       // Random size variation
-      const size = 30 + Math.random() * 30; // 30-60px
+      const size = 60 + Math.random() * 40; // 60-100px
       donut.style.width = size + 'px';
       donut.style.height = size + 'px';
       
       // Random animation duration (fall speed)
-      const duration = 3 + Math.random() * 4; // 3-7 seconds
+      const duration = 4 + Math.random() * 3; // 4-7 seconds
       donut.style.animationDuration = duration + 's';
       
       // Random opacity
-      donut.style.opacity = 0.6 + Math.random() * 0.4; // 0.6-1.0
+      donut.style.opacity = 0.8 + Math.random() * 0.2; // 0.8-1.0
       
       // Random rotation direction
       if (Math.random() > 0.5) {
